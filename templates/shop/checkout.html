@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Online Shop{% endblock %}
+
+{% block content %}
+<h1>Checkout</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="address">Alamat Pengiriman:</label>
+    <textarea id="address" name="address" required></textarea>
+    
+    <label for="payment_method">Metode Pembayaran:</label>
+    <select id="payment_method" name="payment_method" required>
+        <option value="credit_card">Kartu Kredit</option>
+        <option value="bank_transfer">Transfer Bank</option>
+    </select>
+    
+    <button type="submit">Bayar Sekarang</button>
+</form>
+{% endblock %}

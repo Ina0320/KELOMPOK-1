@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Arumningrat{% endblock %}
+
+{% block content %}
+<h1>Daftar Produk</h1>
+<div class="product-list">
+    {% for product in products %}
+    <div class="product">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Harga: Rp {{ product.final_price }}</p>
+        <p>Stok: {{ product.stock_produk }}</p>
+        <p>Diskon: {{ product.discount }}%</p>
+        <a href="{% url 'product_detail' product.slug %}">Lihat Detail</a>
+    </div>
+    {% empty %}
+    <p>Produk tidak tersedia.</p>
+    {% endfor %}
+</div>
+{% endblock %}

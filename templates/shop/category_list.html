@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Kategori - Online Shop{% endblock %}
+
+{% block content %}
+<h1>Daftar Kategori</h1>
+<div class="category-list">
+    {% for category in categories %}
+    <div class="category">
+        <h2>{{ category.name }}</h2>
+        <p>{{ category.description }}</p>
+        <a href="{% url 'category_detail' category.slug %}">Lihat Produk di Kategori Ini</a>
+    </div>
+    {% empty %}
+    <p>Kategori tidak tersedia.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Keranjang - Online Shop{% endblock %}
+
+{% block content %}
+<h1>Keranjang Belanja</h1>
+<div class="cart">
+    {% for item in cart_items %}
+    <div class="cart-item">
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+        <h3>{{ item.product.name }}</h3>
+        <p>Harga: Rp {{ item.product.final_price }}</p>
+        <p>Kuantitas: {{ item.quantity }}</p>
+        <p>Total: Rp {{ item.total_price }}</p>
+        <a href="{% url 'remove_from_cart' item.id %}">Hapus</a>
+    </div>
+    {% empty %}
+    <p>Keranjang Anda kosong.</p>
+    {% endfor %}
+</div>
+
+{% if cart_items %}
+    <p>Total Harga: Rp {{ total_price }}</p>
+    <a href="{% url 'checkout' %}">Checkout</a>
+{% endif %}
+{% endblock %}
